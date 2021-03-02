@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Youtmate</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+    <!--Amoeba !-->
+
+  <!-- Favicons -->
+  <link href="{{url_for('static',filename='assets/img/favicon.png')}}" rel="icon">
+  <link href="{{url_for('static',filename='assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet">
+
+  <!--end amoeba !-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+
+<style>
+
+</style>
+</head>
+<body class="p-x-0">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="index.html"><span>Youtube Downloader</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End #header -->
+<!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+
+<h2>
+    {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor%}
+        {% endif %}
+    {% endwith %}
+
+</h2>
+<form action="http://youtmate.herokuapp.com/download" id="main" method="post" style="margin-top : 22px">
+  <div class="form-group">
+  <input type="url" id="ur" name="ur" class="form-control" autocomplete="off" placeholder="Enter URL" min="0.1" max="99999" step="0.10" required=""><br>
+
+
+<label for="quality">Choose a quality:</label>
+<select name="quality" id="quality" form="main" class="form-control form-control-sm">
+    <option value="video/mp4 , 1080p">video/mp4, 1080p</option>
+    <option value="video/mp4 , 720p">video/mp4, 720p</option>
+    <option value="video/mp4 , 480p">video/mp4, 480p</option>
+    <option value="video/webm , 360p">video/webm , 360p</option>
+    <option value="video/mp4 , 360p">video/mp4, 360p</option>
+    <option value="video/3gpp , 240p">video/3gpp, 240p</option>
+    <option value="video/3gpp , 144p">video/3gpp, 144p</option>
+    <option value="audio/mp4">audio/mp4</option>
+    <option value="audio/webm">audio/webm</option>
+</select>
+      <button type="submit" class="btn btn-dark" style="margin-top : 24px" >Download</button>
+  </div>
+</form>
+    </div>
+  </section>
+
+    <!-- ======= Call To Action Section ======= -->
+    <section class="call-to-action" style="padding : 137px height="100px">
+      <div class="container">
+
+        <div class="text-center">
+          <h2 style="color:white;padding-top: 36px;">About Us</h2>
+            <br>
+            <p class="lead"><h4 style="max-width: fit-content;color:white">We provide you the place to download videos and their audio formats from youtube.</h4></p>
+
+           <!-- Button trigger modal -->
+<button type="button" class="cta-btn" data-toggle="modal" data-target="#exampleModalCenter" style="background-color:black;font-family:cursive">
+  Subscribe
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Subscribe Now</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Default form subscription -->
+<form class="text-center border border-light p-2" method="post" action="/subscribe">
+
+
+    <!-- Name -->
+    <input type="text" id="name" name="name" class="form-control mb-4" placeholder="Name" min="0.1" max="99999" step="0.10" required="">
+
+    <!-- Email -->
+    <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail" min="0.1" max="99999" step="0.10" required="">
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block" type="submit">Submit</button>
+
+
+</form>
+<!-- Default form subscription -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+
+      </div>
+    </section><!-- End Call To Action Section -->
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact section-bg" style="padding : 30px" background-color : #b7ceca>
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>The key to our success is our commitment and dedication to providing the best possible customer service to our clients. While other companies claim to provide top-notch customer service,we actually delivers customer service that is unparalleled in the industry.</p>
+        </div>
+        <br>
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-about">
+              <h3>Youtmate</h3>
+              <p class="lead">Youmate is a vedio downloading platform. It offers a wide variety of user-generated and corporate media videos.</p>
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+                <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+                <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info">
+              <div>
+                <i class="icofont-google-map"></i>
+                <p>Phase-1, Hinjewadi<br>Pune, Maharashtra</p>
+              </div>
+
+              <div>
+                <i class="icofont-envelope"></i>
+                <p>shubzcr7@gmail.com</p>
+              </div>
+                <br>
+              <div>
+                <i class="icofont-phone"></i>
+                <p>+1 XXXX XXXX XX</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-12">
+            <form action="http://youtmate.herokuapp.com/feed" method="post" role="form">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" min="0.1" max="99999" step="0.10" required=""/>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" min="0.1" max="99999" step="0.10" required=""/>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" min="0.1" max="99999" step="0.10" required=""/>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" min="0.1" max="99999" step="0.10" required=""></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="text-center"><button type="submit" class="btn -btn dark">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+
+  <!-- ======= Map Section ======= -->
+    <section class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.38624828985!2d73.73125531436993!3d18.60168907154448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bbcfa5d7d773%3A0x4b1f3c03c7e66e3d!2sSakhare%20Vasti!5e0!3m2!1sen!2sin!4v1595516238470!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </section><!-- End Map Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Shubz</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/ -->
+        Designed by <a href="#">Shubzweb</a>
+      </div>
+    </div>
+  </footer><!-- End #footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='assets/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='assets/js/main.js')}}"></script>
+ <!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+</html>
+
